@@ -1,7 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "kangtuo.h"
+#include <bits/stdc++.h>
+#include <regex>
 #include <io.h>
+
+
 int str_size;
 //菜单列表
 const char* str[] = { "退出","进入官网","更新工具箱","关于我们","扫描并修复win10系统文件[管理员]",
@@ -17,7 +21,7 @@ void update() {
 //输出菜单
 void list_data() {
     system("color A");
-    system("title 小薛工具箱 - 小薛娱乐园出品 - V 1.0.0.3 ");
+    system("title 小薛工具箱 - 小薛娱乐园出品 - V 1.0.0.4 ");
     printf("\n功能列表：\n\n");
     str_size = (sizeof str) / (sizeof str[0]);
     for (int i = 0; i < str_size; i++) {
@@ -37,9 +41,14 @@ void list_run() {
     restart:
     list_data();
     int max;
+    char str[16];
+    bool is;
+    std::regex r("[0-9]+");
     printf("\n\n请输入对应功能的序号：");
-    scanf_s("%d", &max);
-    if (str_size > max) {
+    scanf("%s",str);
+    is=std::regex_match(str,r);
+    max= atoi(str);
+    if (str_size > max&&is==1) {
         switch (max)
         {
             case 0:
@@ -65,7 +74,6 @@ void list_run() {
             case 6:
                 kt_passwd();
                 goto restart;
-                break;
 
         }
     }
