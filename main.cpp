@@ -9,7 +9,7 @@
 int str_size;
 //菜单列表
 const char* str[] = { "退出","进入官网","更新工具箱","关于我们","扫描并修复win10系统文件[管理员]",
-                      "磁盘垃圾清理[系统自带]","康拓电梯卡密码计算" };
+                      "磁盘垃圾清理[系统自带]","康拓电梯卡密钥计算" };
 
 //清楚更新缓存
 void update() {
@@ -55,6 +55,7 @@ void list_run() {
                 break;
             case 1:
                 system("cls && start http://www.52xcl.cn");
+                system("cls");
                 goto restart;
             case 2:
                 system("cls && curl -o update.exe http://api.52xcl.cn:88/toolbox/update.exe && start update.exe");
@@ -67,6 +68,8 @@ void list_run() {
                 goto restart;
             case 4:
                 system("cls && sfc /scannow");
+                system("pause");
+                system("cls");
                 goto restart;
             case 5:
                 system("cls && cleanmgr");

@@ -2,15 +2,16 @@
 #include <stdlib.h>
 #include <bits/stdc++.h>
 #include <regex>
-#include <string>
+#include <string.h>
 
 int kt_passwd(){
+    system("title 小薛工具箱 - [康拓电梯卡密钥计算] - 小薛娱乐园出品");
     start:
     system("cls");
-    std::string strs,strs2,strs3;
-    bool ifs,ifs2,ifs3;
+    bool ifs;
     int bin,bin2,bin3;
-    char str[8],str2[2],str3[2];
+    char str[8];
+    char str2[7],str3[7];
     printf("请输入八位数卡号[0退出]：");
     scanf("%s",str);
     std::regex s("[a-fA-F0-9]{8}");
@@ -21,29 +22,13 @@ int kt_passwd(){
         system("cls");
         return 0;
     }else if(ifs){
-        st2:
-        printf("请输入第3位和第4位卡号：");
-        scanf("%s",str2);
-        strs2=str2;
+        strncpy(str2,str+2,2);
         bin2 = strtol(str2,0,16);
-        ifs2= std::regex_match(str2,s2);
-        if (ifs2){
-            st3:
-            printf("请输入第5位和第6位卡号：");
-            scanf("%s",str3);
-            strs3=str3;
-            bin3 = strtol(str3,0,16);
-            ifs3=std::regex_match(str3,s2);
-            if(ifs3){
-                printf("key：\n%X%X%X",bin^0x12345678,bin2^0x90,bin3^0xAA);
-                system("pause");
-                goto start;
-            } else{
-                goto st3;
-            }
-        } else{
-            goto st2;
-        }
+        strncpy(str3,str+4,2);
+        bin3 = strtol(str3,0,16);
+        printf("key:\n%X%X%X\n",bin^0x12345678,bin2^0x90,bin3^0xAA);
+        system("pause");
+        goto start;
     } else{
         system("cls");
      goto start;
